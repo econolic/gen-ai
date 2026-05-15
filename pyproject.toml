@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "gen-ai"
+version = "0.1.0"
+description = "Generative and Agentic AI"
+authors = ["econolic"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+openai = "^1.0.0"
+dotenv = "^0.9.9"
+ipykernel = "^7.2.0"
+
+[dependency-groups]
+dev = [
+    "ipykernel (>=7.2.0,<8.0.0)"
+]
