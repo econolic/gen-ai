@@ -1,0 +1,51 @@
+name: Excel Agent Platform CI
+
+on:
+  push:
+    paths:
+      - "excel-agent-platform/**"
+      - ".github/workflows/excel-agent-platform-ci.yml"
+  pull_request:
+    paths:
+      - "excel-agent-platform/**"
+      - ".github/workflows/excel-agent-platform-ci.yml"
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: excel-agent-platform/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: snok/install-poetry@v1
+        with:
+          version: "2.1.4"
+      - run: poetry install --with dev --no-interaction --no-ansi --no-root
+      - run: poetry run ruff check
+      - run: poetry run pytest
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: excel-agent-platform/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: excel-agent-platform/frontend/package-lock.json
+      - run: npm ci
+      - run: npm run build
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose build
+        working-directory: excel-agent-platform

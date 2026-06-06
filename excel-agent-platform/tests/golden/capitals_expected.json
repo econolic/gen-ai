@@ -1,0 +1,4 @@
+{
+  "Kyiv|Ukraine|Paris|France": {"expected": 2023, "tolerance_pct": 10},
+  "London|United Kingdom|Rome|Italy": {"expected": 1434, "tolerance_pct": 10}
+}

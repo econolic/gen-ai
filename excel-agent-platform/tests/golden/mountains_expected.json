@@ -1,0 +1,5 @@
+{
+  "Mount Everest|Nepal/China": {"expected": 8848, "tolerance_pct": 2},
+  "K2|Pakistan/China": {"expected": 8611, "tolerance_pct": 2},
+  "Kangchenjunga|Nepal/India": {"expected": 8586, "tolerance_pct": 2}
+}
